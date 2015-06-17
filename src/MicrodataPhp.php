@@ -10,8 +10,10 @@
  * Copyright (c) 2009-2011 Philip Jägenstedt
  */
 
-namespace linclark\MicrodataPHP;
+//namespace linclark\MicrodataPHP;
 
+require('MicrodataPhpDOMElement.php');
+require('MicrodataPhpDOMDocument.php');
 /**
  * Extracts microdata from HTML.
  *
@@ -40,8 +42,8 @@ class MicrodataPhp {
     }
 
     $dom = new MicrodataPhpDOMDocument();
-    $dom->registerNodeClass('DOMDocument', 'linclark\MicrodataPHP\MicrodataPhpDOMDocument');
-    $dom->registerNodeClass('DOMElement', 'linclark\MicrodataPHP\MicrodataPhpDOMElement');
+    $dom->registerNodeClass('DOMDocument', 'MicrodataPhpDOMDocument');
+    $dom->registerNodeClass('DOMElement', 'MicrodataPhpDOMElement');
     $dom->preserveWhiteSpace = false;
 
     // Prepare the DOM using either the URL or HTML string.
@@ -111,10 +113,6 @@ class MicrodataPhp {
     // Add itemtype.
     if ($itemtype = $item->itemType()) {
       $result->type = $itemtype;
-    }
-    // Add itemid. 
-    if ($itemid = $item->itemid()) {
-      $result->id = $itemid;
     }
     // Add properties.
     foreach ($item->properties() as $elem) {
