@@ -1,6 +1,6 @@
 <?php
 
-namespace linclark\MicrodataPHP;
+//namespace linclark\MicrodataPHP;
 
 /**
  * Extend the DOMElement class with the Microdata API functions.
@@ -27,6 +27,15 @@ class MicrodataPhpDOMElement extends \DOMElement {
     $itemtype = $this->getAttribute('itemtype');
     if (!empty($itemtype)) {
       return $this->tokenList($itemtype);
+    }
+    // Return NULL instead of the empty string returned by getAttributes so we
+    // can use the function for boolean tests.
+    return NULL;
+  }
+  public function alink() {
+    $itemtype = $this->getAttribute('href');
+    if (!empty($itemtype)) {
+      return $itemtype;
     }
     // Return NULL instead of the empty string returned by getAttributes so we
     // can use the function for boolean tests.
